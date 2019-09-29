@@ -1,0 +1,30 @@
+<main class="encode">
+    <section class="form">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-success" role="alert" *ngIf="showSuccess">
+                        {{successMsg}}
+                    </div>
+                    
+                    <div class="alert alert-danger" role="alert" *ngIf="showError">
+                        {{errorMsg}}
+                    </div>    
+                    <form [formGroup]="encodeForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="inputUnencoded">Unencoded string</label>
+                            <input type="text" class="form-control" id="inputUnencoded"  placeholder="Enter string to encode" formControlName="unEncodedString">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+
+                    <div class="alert alert-info mt-3" *ngIf="encodedString">
+                        <p>Encoded string:</p>
+                        {{encodedString}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+

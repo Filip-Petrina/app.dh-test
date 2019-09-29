@@ -1,0 +1,17 @@
+header {
+    padding: 20px 0 10px;
+    background: lightsalmon;
+    margin-bottom: 20px;
+    font-family: "Courier New", Courier, monospace;
+    h3{
+        font-weight: 700;
+    }
+
+    a{
+        margin-left: 10px;
+        &.active {
+            color:white;
+            text-decoration: underline;
+        }
+    }
+}

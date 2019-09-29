@@ -1,0 +1,30 @@
+<main class="login">
+    <section class="form">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-success" role="alert" *ngIf="showSuccess">
+                        {{successMsg}}
+                    </div>
+                    
+                    <div class="alert alert-danger" role="alert" *ngIf="showError">
+                        {{errorMsg || 'Unknown error'}}
+                    </div>
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="inputEmail">Email address</label>
+                            <input type="email" [ngClass]="{'form-control': true, 'is-invalid': formSubmitted && email.errors}" id="inputEmail" aria-describedby="emailError" placeholder="Enter email" formControlName="email">
+                            <small *ngIf="formSubmitted && email.errors" id="emailError" class="invalid-feedback">Please enter a valid email.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">Password</label>
+                            <input type="password" [ngClass]="{'form-control': true, 'is-invalid': formSubmitted && password.errors}" id="inputPassword" placeholder="Enter password" aria-describedby="passwordError" formControlName="password">
+                            <small *ngIf="formSubmitted && password.errors" id="passwordError" class="invalid-feedback">The password must be at least 6 characters long and have at least 1 digit.</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
