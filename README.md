@@ -14,14 +14,16 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Projec specific architecture
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Pages
+Both the `login` and `encode` pages are located in the `/app/pages` directory, and have their own modules and routing modules. This is to enable code scalability and sub-routes, if the project grew beyond the current scope.
 
-## Running end-to-end tests
+### NgRx
+The `/app/reducers`, `/app/actions`, and `/app/app.state.ts` are all parts of the common NgRx structure. NgRx is currently used only for the storing of the authorization token.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Interceptors
+Two request interceptors are currently implemented, the `default-headers.interceptor` and `token.interceptor`. The former sets the default headers we want on all our requests, and the latter sets the authorization token header on all requests except ones that go to the `/login` endpoint.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Guards
+Route guarding was implemented via the `authGuard`, applied to the `/encode` route. It checks for a valid token in the NgRx store; if not found, redirects the user to the `/login` route.
